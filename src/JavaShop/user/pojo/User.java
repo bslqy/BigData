@@ -12,26 +12,26 @@ public class User implements Serializable {
     private String name;
     private int VIPLevel;
     private String phone;
-    private String add;
+    private String city;
 
-    public User(String account, String password, int age, String name, int VIPLevel, String phone, String add) {
+    public User(String account, String password, int age, String name, int VIPLevel, String phone, String city) {
         this.account = account;
         this.password = password;
         this.age = age;
         this.name = name;
         this.VIPLevel = VIPLevel;
         this.phone = phone;
-        this.add = add;
+        this.city = city;
     }
 
-    public void set(String account, String password, int age, String name, int VIPLevel, String phone, String add) {
+    public void set(String account, String password, int age, String name, int VIPLevel, String phone, String city) {
         this.account = account;
         this.password = password;
         this.age = age;
         this.name = name;
         this.VIPLevel = VIPLevel;
         this.phone = phone;
-        this.add = add;
+        this.city = city;
     }
 
     public String getAccount() {
@@ -82,11 +82,11 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
-    public String getAdd() {
-        return add;
+    public String getcity() {
+        return city;
     }
 
-    public void setAdd(String add) {
-        this.add = add;
+    public void setcity(String add) {
+        this.city = add;
     }
 }

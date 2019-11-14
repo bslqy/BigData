@@ -10,19 +10,20 @@ public interface UserDao {
     // Add User
     public boolean addUser(User user) throws IOException, ClassNotFoundException;
 
-    public boolean removeUser(String account);
+    public boolean removeUser(String account) throws IOException, ClassNotFoundException;
 
     /***
      *  要求serivce层把所有要修改用户的数据传过来
      */
-    public boolean updateUser(User user);
+    public boolean updateUser(User user) throws IOException, ClassNotFoundException;
 
-    public User getUserByAccount(String account);
+    public User getUserByAccount(String account) throws IOException, ClassNotFoundException;
 
-    public List<User> getUserByAgeRange(int maxAge,int minAge);
+    public List<User> getUserByAgeRange(int maxAge,int minAge) throws IOException, ClassNotFoundException;
 
-    public List<User> getUserByVipRange(int maxAge,int minAge);
+    public List<User> getUserByVipRange(int maxAge,int minAge) throws IOException, ClassNotFoundException;
 
-    public List<User> getUserByName(String name);
+    public List<User> getUserByName(String name) throws IOException, ClassNotFoundException;
+
 
 }
