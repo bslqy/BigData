@@ -8,7 +8,7 @@ public class DataCollectionMain {
 
         Timer timer = new Timer();
         timer.schedule(new CollectorTask(),0,60*60*1000L);
-        timer.schedule(new BackupCleanTask(),0,60*60*1000L);
+//        timer.schedule(new BackupCleanTask(),0,60*60*1000L);
 
     }
 
