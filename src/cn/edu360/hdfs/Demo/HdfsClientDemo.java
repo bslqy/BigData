@@ -1,4 +1,4 @@
-package hdfs24;
+package cn.edu360.hdfs.Demo;
 
 
 import org.apache.hadoop.conf.Configuration;
@@ -6,7 +6,10 @@ import org.apache.hadoop.fs.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
@@ -109,6 +112,76 @@ public class HdfsClientDemo {
         fs.close();
     }
 
+    /***
+     * 读取hdfs中的文件内容
+     * @throws IOException
+     */
+
+    @Test
+    public void testReadData() throws IOException {
+        FSDataInputStream in = fs.open(new Path("/spark.txt"));
+        //按字节读
+//        byte[] buff = new byte[1024];
+//        in.read(buff);
+//        System.out.println(new String(buff));
+
+        //按字符流
+        BufferedReader br = new BufferedReader(new InputStreamReader(in,"utf-8"));
+        String line = null;
+        while((line = br.readLine())!= null){
+            System.out.println(line);
+        }
+        br.close();
+        in.close();
+        fs.close();
+
+
+
+    }
+
+    /***
+     * 指定偏移量后读取
+     * @throws IOException
+     */
+
+    @Test
+    public void testRandomReadData() throws IOException {
+        FSDataInputStream in = fs.open(new Path("/spark.txt"));
+
+        //将读取的起始位置进行指定
+        in.seek(12);
+
+
+        byte[] buff = new byte[16];
+        in.read(buff);
+        System.out.println(new String(buff));
+
+
+        in.close();
+        fs.close();
+
+
+
+    }
+
+    @Test
+    public void testWriteData() throws IOException {
+        // 新文件写数据 或者 已存在的 append
+        FSDataOutputStream out = fs.create(new Path("/yy.jpg"),false);
+
+        FileInputStream in = new FileInputStream("");
+        byte[] buf = new byte[1024];
+
+        int read = 0;
+        while((read = in.read(buf))!= -1){
+            out.write(buf,0,read);
+
+        }
+
+        out.write(buf);
+        out.close();
+        fs.close();
+    }
 
 
 }
